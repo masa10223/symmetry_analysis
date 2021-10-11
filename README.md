@@ -1,5 +1,6 @@
 # 多階層揺らぎ解析による多様性の発生基盤の解明(仮)　
 Shunsuke Ichii, Masato Tsutsumi, Yui Uchida et al., 
+## 手法内容
 ## smFISH パート
 tmr と dapi と呼ばれる染色を用いてそれぞれでの蛍光画像を重ね合わせた画像から、mRNAの数を数える。
 
@@ -8,7 +9,7 @@ tmr と dapi と呼ばれる染色を用いてそれぞれでの蛍光画像を�
 ## WISH パート
 遺伝子を発現させ、胚の表面領域でどのように発現しているのかをその領域の対称度合いを用いて解析する。
 
-
+## About this Repository
 ### 作業ブランチの説明。
 1. main 
    - main branch これを最終的にpublishする。基本いじらない。 README.md と 原稿のmanuscriptぐらいを置いておく予定。
