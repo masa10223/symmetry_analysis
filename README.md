@@ -10,13 +10,13 @@ tmr と dapi と呼ばれる染色を用いてそれぞれでの蛍光画像を�
 
 
 ### 作業ブランチの説明。
-- main 
- main branchこれを最終的な pulish として出す。基本いじらない。 README.md と 原稿のmanuscriptぐらいを置いておく予定。
-- smFISH-ichii
-@ichii-shunsuke smFISH 担当ブランチ。smFISH の解析　主な言語は MATLAB
-- smFISH-tsutsumi
-@masa10223 smFISH 担当ブランチ。smFISH の解析　主な言語は python
-- WISH-ichii
-@ichii-shunsuke WISH 担当ブランチ。smFISH の解析　主な言語は MATLAB
-- WISH-tsutsumi
-@masa10223 smFISH 担当ブランチ。smFISH の解析　主な言語は python
+1. main 
+   - main branch これを最終的にpublishする。基本いじらない。 README.md と 原稿のmanuscriptぐらいを置いておく予定。
+2. smFISH-ichii
+   - @ichii-shunsuke smFISH 担当ブランチ。smFISH の解析　主な言語は MATLAB
+3. smFISH-tsutsumi
+   - @masa10223 smFISH 担当ブランチ。smFISH の解析　主な言語は python
+4. WISH-ichii
+   - @ichii-shunsuke WISH 担当ブランチ。smFISH の解析　主な言語は MATLAB
+5. WISH-tsutsumi
+   - @masa10223 smFISH 担当ブランチ。smFISH の解析　主な言語は python
