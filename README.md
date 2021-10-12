@@ -6,36 +6,41 @@ Shunsuke Ichii, Masato Tsutsumi, Yui Uchida et al.,
 ### やること
 
 ### ターゲット遺伝子
-1. 背腹軸形成：chrd, szl, bmp2b, bmp7
-2. 頭尾軸形成：bmp2b, Wnt5a, Wnt8a, ndr2
+#### 背腹軸形成：
+	chrd, szl, bmp2b, bmp7
+#### 頭尾軸形成：
+	bmp2b, Wnt5a, Wnt8a, ndr2
 
 
 ### どういうFigureを用意するか
-Figure1：(a)ターゲット遺伝子、どこで発現してどの軸形成に関わるか、発現量揺らぎがでかいか小さいか
+#### Figure1：
+	(a)ターゲット遺伝子、どこで発現してどの軸形成に関わるか、発現量揺らぎがでかいか小さいか
 
-Figure2：
- (a) smFISHの実験と解析の概要 
- (b) データ処理してこういう像が見えました事例
- (c) mRNAカウント数のヒストグラム？　
- (d) mRNA分子数揺らぎ（sdかなんか）のプロット
+#### Figure2：
+	(a) smFISHの実験と解析の概要 
+	(b) データ処理してこういう像が見えました事例
+	(c) mRNAカウント数のヒストグラム？　
+	(d) mRNA分子数揺らぎ（sdかなんか）のプロット
 
-Supplemental Figure1：
-- (a) バックグラウンド
-- (b) probe入れない場合の自家蛍光
-- (c) 非発現領域の蛍光
-- （輝度ヒストグラムをつけるか）
+#### Supplemental Figure1：
+	(a) バックグラウンド
+	(b) probe入れない場合の自家蛍光
+	(c) 非発現領域の蛍光
+	(輝度ヒストグラムをつけるか）
 
+#### Figure3：
+	(a) WISH解析の概要
+	(b) データ処理してこういう像が見えました事例
+	(c) 非対称度のプロット
 
-Figure3：
-- (a) WISH解析の概要
-- (b) データ処理してこういう像が見えました事例
-- (c) 非対称度のプロット
+#### Supplemental Figure 2：
+	(a~) （域値取るなら）別の域値でやるとこういう結果になった
 
-Supplemental Figure 2：
-- (a) （域値取るなら）別の域値でやるとこういう結果になった
+#### Supplemental Figure 3：
+	(a~) 別の指標でやるとこうなった
 
-Supplemental Figure 3：
-- (a) 別の指標でやるとこうなった
+#### Figure4：
+	(a) 発現量揺らぎの大小、細胞内発現量揺らぎの大小、発現領域揺らぎの大小のまとめ
 
 
 
