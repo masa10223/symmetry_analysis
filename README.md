@@ -9,7 +9,7 @@ Shunsuke Ichii, Masato Tsutsumi, Yui Uchida et al.,
 #### 背腹軸形成：
 	chrd, szl, bmp2b, bmp7
 #### 頭尾軸形成：
-	bmp2b, Wnt5a, Wnt8a, ndr2
+	bmp2b, Wnt5a, Wnt7, Wnt8a, ndr2
 
 
 ### どういうFigureを用意するか
