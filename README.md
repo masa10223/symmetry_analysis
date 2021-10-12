@@ -6,8 +6,26 @@ Shunsuke Ichii, Masato Tsutsumi, Yui Uchida et al.,
 ### やること
 
 ### ターゲット遺伝子
+1. 背腹軸形成
+chrd
+szl
+bmp2b
+bmp7
+
+2. 頭尾軸形成
+bmp2b
+Wnt5a
+Wnt8a
+ndr2
 
 ### どういうFigureを用意するか
+Figure1：(a)ターゲット遺伝子、どこで発現してどの軸形成に関わるか、発現量揺らぎがでかいか小さいか
+
+Figure2：(a)smFISHの実験と解析の概要 (b)データ処理してこういう像が見えました事例　（c）mRNAカウント数のヒストグラム？　(d)mRNA分子数揺らぎ（sdかなんか）のグラフ。
+Figure2 Supplemental 1：バックグラウンド、probe入れない場合の自家蛍光、非発現領域の蛍光（輝度ヒストグラムをつけるか）
+
+
+Figure3
 
 
 ## 手法内容
