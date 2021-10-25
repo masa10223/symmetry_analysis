@@ -43,8 +43,8 @@ if __name__ == '__main__' :
                 help = 'input the absolute path of image'
                 )
     parser.add_argument(
-                '-t',
                 '--threshold',
+                '-t',
                 type = int,
                 help = 'input value of threshold of binarizing image'
                 )
