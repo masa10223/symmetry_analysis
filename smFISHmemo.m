@@ -104,3 +104,8 @@ RawData = lsmread("RawData/smFISH/20211011/NoProbe/noprobe_211011 _sample1_1_DAP
 RawData = lsmread("RawData/smFISH/20211011/probe conc. 2%/ndr2_211011 _sample1_2_DAPI%=1_TMR%=10_TMRgain=900__sum=4_size=512_interval=0_slice=1.lsm");
 tmr = rescale(double(squeeze(RawData(1,1,1,:,:))));
 dapi = rescale(double(squeeze(RawData(1,2,1,:,:))));
+
+
+
+%main.mに作ったが、highlightの閾値で結果がかなり変わる
+%調整が必要 interactiveにできるか？
