@@ -1,11 +1,12 @@
-function [tmrHighlight, dapiHighlight] = main(tifFilename, Npage, ROIFilename, figSize)
+function [tmrHighlight, dapiHighlight] = main(tifFilename, ROIFilename)
 % tifFilename tifの名前
 % Npage tifに何枚含まれるか
 % ROIFilename imageJで作ったROIデータの名前
 % figSize 画像の1辺のpixelサイズ
-tifData = readTifSeq(tifFilename, Npage*2);
-tmrData = tifData(1:2:Npage*2,:,:);
-dapiData = tifData(2:2:Npage*2,:,:);
+tifData = readTifSeq(tifFilename);
+Npage = size(tifData)/2;
+tmrData = tifData(1:2:end,:,:);
+dapiData = tifData(2:2:end,:,:);
 tmrHighlight = zeros(size(tmrData));
 dapiHighlight = zeros(size(tmrData));
 for t = 1:Npage
@@ -14,6 +15,7 @@ end
 for t = 1:Npage
     dapiHighlight(t,:,:) = highlightFP(squeeze(dapiData(t,:,:)));
 end
+figSize = size(tifData, 3);
 ROIs = readROIs(ROIFilename, figSize);
 tmrinROI = zeros(1,size(ROIs,1));
 dapiinROI = zeros(1,size(ROIs,1));

@@ -109,3 +109,11 @@ dapi = rescale(double(squeeze(RawData(1,2,1,:,:))));
 
 %main.mに作ったが、highlightの閾値で結果がかなり変わる
 %調整が必要 interactiveにできるか？
+
+% ファイル名を取得
+% ls *.tif >> tifFilenamelist.tx
+% ls *.zip >> ROIFilenamelist.txt
+tifFilenamelist = splitlines(string(fileread("RawData/smFISH/20211022/tifFilenamelist.txt")));
+tifFilenamelist = tifFilenamelist(1:end-1);
+ROIFilenamelist = splitlines(string(fileread("RawData/smFISH/20211022/ROIFilenamelist.txt")));
+ROIFilenamelist = ROIFilenamelist(1:end-1);
