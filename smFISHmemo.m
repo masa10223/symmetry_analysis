@@ -117,3 +117,18 @@ tifFilenamelist = splitlines(string(fileread("RawData/smFISH/20211022/tifFilenam
 tifFilenamelist = tifFilenamelist(1:end-1);
 ROIFilenamelist = splitlines(string(fileread("RawData/smFISH/20211022/ROIFilenamelist.txt")));
 ROIFilenamelist = ROIFilenamelist(1:end-1);
+
+boundaries = zeros(512, "logical");
+for bind = 1:size(ROIs,1)
+    B = bwboundaries(squeeze(ROIs(bind,:,:)));
+    for i = 1:size(B{1}, 1)
+    boundaries(B{1}(i,1),B{1}(i,2)) = true;
+    end
+end
+imshow(boundaries)
+t = 12;
+colorFig = repmat(squeeze(tmrData(t,:,:)), 1,1,3);
+colorFig(:,:,1) = colorFig(:,:,1)+uint8(squeeze(y(t,:,:)))*256;
+colorFig(:,:,2) = colorFig(:,:,2)+uint8(squeeze(y(t,:,:)))*256;
+colorFig(:,:,1) = colorFig(:,:,1)+uint8(boundaries)*256;
+imshow(colorFig, "border", "tight")
