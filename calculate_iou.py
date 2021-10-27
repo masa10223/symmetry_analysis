@@ -2,6 +2,32 @@ import cv2
 import numpy as np
 import sys
 
+
+## 発現領域を抽出する。
+def crop_expression_area(path, thr, area_min = 6000, area_max = 100000):
+    img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    IMG = img.copy()
+    _, binary = cv2.threshold(IMG, thr, 255, cv2.THRESH_BINARY)
+    contours, _ = cv2.findContours(binary,
+                                            cv2.RETR_LIST,
+                                            cv2.CHAIN_APPROX_SIMPLE)
+    areas = []
+    for i in range(0, len(contours)):
+        if len(contours[i]) > 0:
+        # remove small objects
+            if (cv2.contourArea(contours[i]) > area_min )& (cv2.contourArea(contours[i]) < area_max ) :
+                rect = contours[i]
+                areas.append(rect)
+
+    ## 抽出領域が2個以上の場合わけを後で考える。
+    try:
+        x_, y_, w_, h_ = cv2.boundingRect(max(areas, key=lambda x: cv2.contourArea(x)))
+        buffer = 30
+        img_exp = (img[y_-buffer:y_+h_+buffer,x_-buffer:x_+w_+buffer])    
+        return img_exp
+    except ValueError:
+        pass
+
 def preprocess(img_exp, thr, kernel_size = 4):
     _, binary = cv2.threshold(img_exp, thr, 1, cv2.THRESH_BINARY_INV)
     kernel = np.ones((kernel_size,kernel_size), np.uint8)
@@ -20,25 +46,6 @@ def preprocess(img_exp, thr, kernel_size = 4):
     return img_exp_pre
 
 
-
-## 発現領域を抽出する。
-def crop_expression_area(path, thr, area_min = 6000, area_max = 100000):
-    img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-    IMG = img.copy()
-    _, binary = cv2.threshold(IMG, thr, 255, cv2.THRESH_BINARY)
-    contours, _ = cv2.findContours(binary,
-                                            cv2.RETR_LIST,
-                                            cv2.CHAIN_APPROX_SIMPLE)
-    for i in range(0, len(contours)):
-        if len(contours[i]) > 0:
-        # remove small objects
-            if (cv2.contourArea(contours[i]) > area_min )& (cv2.contourArea(contours[i]) < area_max ) :
-                rect = contours[i]
-                x, y, w, h = cv2.boundingRect(rect)
-    ## 抽出領域が2個以上の場合わけを後で考える。
-    buffer = 30
-    img_exp = (img[y-buffer:y+h+buffer,x-buffer:x+w+buffer])    
-    return img_exp
 
 def split_crop_area(binary):
     #ret, binary = cv2.threshold(img_exp, thr, 1, cv2.THRESH_BINARY_INV)

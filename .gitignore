@@ -3,3 +3,12 @@ IoU_angle_thr.png
 CSV/*
 Figs/*
 all_gene_compare.py
+test_select_gene.py
+checkpoint_Nodal.npy
+Nodal_extract.sh
+__pycache__/calculate_IoU_new_env.cpython-37.pyc
+calculate_IoU_new_env.py
+Chd_extract.sh
+Szl_extract.sh
+checkpoint_Chordin.npy
+checkpoint_Szl.npy
