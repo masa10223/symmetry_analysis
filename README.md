@@ -46,7 +46,7 @@ Shunsuke Ichii, Masato Tsutsumi, Yui Uchida et al.,
 
 ## 手法内容
 ## smFISH パート
-tmr と dapi と呼ばれる染色を用いてそれぞれでの蛍光画像を重ね合わせた画像から、mRNAの数を数える。
+tmr と dapi と呼ばれる染色を用いてそれぞれでの蛍光画像を重ね合わせた画像から、mRNAの数を数える。（使える細胞10個、サンプル6replicates（上下１個ずつ捨てる）くらいの感じで）
 
 
 
