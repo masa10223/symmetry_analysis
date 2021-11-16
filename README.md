@@ -20,3 +20,15 @@ tmr と dapi と呼ばれる染色を用いてそれぞれでの蛍光画像を�
 @ichii-shunsuke WISH 担当ブランチ。smFISH の解析　主な言語は MATLAB
 - WISH-tsutsumi
 @masa10223 smFISH 担当ブランチ。smFISH の解析　主な言語は python
+
+
+## script の説明
+とある [gene] のtif 画像[filename]から、ある閾値[thr min] からある閾値[thr max]まで二値化した画像からある面積[area min]からある面積[area max]までの範囲にある発現領域をとる。
+```
+$ conda activate DLC-CPU
+$ python ./scripts/test_select_gene.py -tmin [thr min] -tmax [thr max] -amin [area min] -amax [area max] -g [gene name] -p [filename]
+```
+visualize violin plot
+```
+$ python ./scripts/visualize_violin.py
+```
