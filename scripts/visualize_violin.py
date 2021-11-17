@@ -9,7 +9,7 @@ import seaborn as sns
 def concat_csv():
     i = 0 
     for CSV in sorted(glob.glob('../CSV/result*.csv')):
-        print(CSV)
+        print("concatenating on {}".format(CSV))
         if i == 0:
             tmp = pd.read_csv(CSV, index_col=0)
         else: 
@@ -32,7 +32,7 @@ def extract_gene_csv(gene_result):
 def plot_violin(chd_assym, ndl_assym, szl_assym):
     df = pd.DataFrame({
         'chd': chd_assym,
-        'ndl': ndl_assym,
+        'ndr': ndl_assym,
         'szl': szl_assym
     })
     df_melt = pd.melt(df)
@@ -46,7 +46,7 @@ def plot_violin(chd_assym, ndl_assym, szl_assym):
 
     ax.set_xlabel('Gene', fontsize = 20)
     ax.set_ylabel('Rate of Assymetry ' ,fontsize = 20)
-    ax.set_xticklabels(['chd', 'ndl', 'szl'],fontsize=16)
+    ax.set_xticklabels(['chd', 'ndr', 'szl'],fontsize=16)
     plt.savefig('../Figs/violinplot_each_gene.png')
     
     
