@@ -1,6 +1,7 @@
-% filenameの取り込み
-% ls *.tif >> tifFilenamelist.tx
-% ls *.zip >> ROIFilenamelist.txt などとしておく
+%% filenameの取り込み
+% ls ~*.tif >> ~TifFilename.txt
+% ls ~*.zip >> ~ROIFilename.txt などとしておく
+%{
 szlTifFilename = "RawData/smFISH/20211018/"+splitlines(string(fileread("RawData/smFISH/20211018/szlTifFilename.txt")));
 szlTifFilename = szlTifFilename(1:end-1);
 szlROIFilename = "RawData/smFISH/20211018/"+splitlines(string(fileread("RawData/smFISH/20211018/szlROIFilename.txt")));
@@ -13,8 +14,25 @@ wntTifFilename = "RawData/smFISH/20211022/"+splitlines(string(fileread("RawData/
 wntTifFilename = wntTifFilename(1:end-1);
 wntROIFilename = "RawData/smFISH/20211022/"+splitlines(string(fileread("RawData/smFISH/20211022/wntROIFilename.txt")));
 wntROIFilename = wntROIFilename(1:end-1);
+%}
+szlTifFilename = "RawData/smFISH/20211109/"+splitlines(string(fileread("RawData/smFISH/20211109/szlTifFilename.txt")));
+szlTifFilename = szlTifFilename(1:end-1);
+szlROIFilename = "RawData/smFISH/20211109/"+splitlines(string(fileread("RawData/smFISH/20211109/szlROIFilename.txt")));
+szlROIFilename = szlROIFilename(1:end-1);
+chrdTifFilename = "RawData/smFISH/20211109/"+splitlines(string(fileread("RawData/smFISH/20211109/chrdTifFilename.txt")));
+chrdTifFilename = chrdTifFilename(1:end-1);
+chrdROIFilename = "RawData/smFISH/20211109/"+splitlines(string(fileread("RawData/smFISH/20211109/chrdROIFilename.txt")));
+chrdROIFilename = chrdROIFilename(1:end-1);
+bmpTifFilename = "RawData/smFISH/20211112/"+splitlines(string(fileread("RawData/smFISH/20211112/bmp2bTifFilename.txt")));
+bmpTifFilename = bmpTifFilename(1:end-1);
+bmpROIFilename = "RawData/smFISH/20211112/"+splitlines(string(fileread("RawData/smFISH/20211112/bmp2bROIFilename.txt")));
+bmpROIFilename = bmpROIFilename(1:end-1);
+wntTifFilename = "RawData/smFISH/20211112/"+splitlines(string(fileread("RawData/smFISH/20211112/wnt8TifFilename.txt")));
+wntTifFilename = wntTifFilename(1:end-1);
+wntROIFilename = "RawData/smFISH/20211112/"+splitlines(string(fileread("RawData/smFISH/20211112/wnt8ROIFilename.txt")));
+wntROIFilename = wntROIFilename(1:end-1);
 
-% szl
+%% szl
 szlNFP = cell(1,6);
 for sampleIndex = 1:6
     tifFilename = szlTifFilename(contains(szlTifFilename, append("sample", num2str(sampleIndex))));
@@ -28,7 +46,7 @@ for sampleIndex = 1:6
     end
 end
 
-% chrd
+%% chrd
 chrdNFP = cell(1,6);
 for sampleIndex = 1:6
     tifFilename = chrdTifFilename(contains(chrdTifFilename, append("sample", num2str(sampleIndex))));
@@ -42,7 +60,21 @@ for sampleIndex = 1:6
     end
 end
 
-% wnt
+%% bmp
+bmpNFP = cell(1,6);
+for sampleIndex = 1:6
+    tifFilename = bmpTifFilename(contains(bmpTifFilename, append("sample", num2str(sampleIndex))));
+    ROIFilename = bmpROIFilename(contains(bmpROIFilename, append("sample", num2str(sampleIndex))));
+    for i = 1:size(tifFilename,1)
+        tifData = readTifSeq(tifFilename(i));
+        tmrData = tifData(1:2:end,:,:);
+        figSize = size(tifData, 3);
+        ROIs = readROIs(ROIFilename(i), figSize);
+        bmpNFP{sampleIndex} = [bmpNFP{sampleIndex} plotNFP(tmrData, ROIs)];
+    end
+end
+
+%% wnt
 wntNFP = cell(1,6);
 for sampleIndex = 1:6
     tifFilename = wntTifFilename(contains(wntTifFilename, append("sample", num2str(sampleIndex))));
@@ -57,7 +89,7 @@ for sampleIndex = 1:6
 end
 
 
-% plot szl
+%% plot szl
 hold on
 for i = 1:6
     if size(szlNFP{i},2) > 0
@@ -86,7 +118,7 @@ set(gca, "fontsize", 20);
 saveas(gca, "szlNFPviolin.png")
 close
 
-% plot chrd
+%% plot chrd
 
 hold on
 for i = 1:6
@@ -116,7 +148,37 @@ set(gca, "fontsize", 20);
 saveas(gca, "chrdNFPviolin.png")
 close
 
-% plot wnt
+%% plot bmp
+
+hold on
+for i = 1:6
+    if size(bmpNFP{i},2) > 0
+        plot(i,bmpNFP{i},".");
+    end
+end
+xlabel("sample");
+ylabel("# in a cell")
+xlim([0.5 6.5])
+set(gca, "fontsize", 20);
+saveas(gca, "bmpNFP.png")
+close
+
+vec = [];
+sample = [];
+for i = 1:6
+    vec = [vec, bmpNFP{i}];
+    sample = [sample i*ones(1,size(bmpNFP{i},2))];
+end
+violinplot(vec, sample);
+xlabel("sample");
+ylabel("# in a cell");
+xlim([0.5 6.5])
+title("bmp")
+set(gca, "fontsize", 20);
+saveas(gca, "bmpNFPviolin.png")
+close
+
+%% plot wnt
 
 hold on
 for i = 1:6
@@ -147,7 +209,7 @@ saveas(gca, "wntNFPviolin.png")
 close
 
 
-% sample# が含まれているかはcontainを使う
+%% sample# が含まれているかはcontainを使う
 %{
 index = 2;
 tifData = readTifSeq(tifFilenamelist(index));
