@@ -1,6 +1,8 @@
 %% filenameの取り込み
 % ls ~*.tif >> ~TifFilename.txt
 % ls ~*.zip >> ~ROIFilename.txt などとしておく
+
+%% 20211018
 %{
 szlTifFilename = "RawData/smFISH/20211018/"+splitlines(string(fileread("RawData/smFISH/20211018/szlTifFilename.txt")));
 szlTifFilename = szlTifFilename(1:end-1);
@@ -15,6 +17,8 @@ wntTifFilename = wntTifFilename(1:end-1);
 wntROIFilename = "RawData/smFISH/20211022/"+splitlines(string(fileread("RawData/smFISH/20211022/wntROIFilename.txt")));
 wntROIFilename = wntROIFilename(1:end-1);
 %}
+
+%% 20211112
 szlTifFilename = "RawData/smFISH/20211109/"+splitlines(string(fileread("RawData/smFISH/20211109/szlTifFilename.txt")));
 szlTifFilename = szlTifFilename(1:end-1);
 szlROIFilename = "RawData/smFISH/20211109/"+splitlines(string(fileread("RawData/smFISH/20211109/szlROIFilename.txt")));
@@ -32,6 +36,11 @@ wntTifFilename = wntTifFilename(1:end-1);
 wntROIFilename = "RawData/smFISH/20211112/"+splitlines(string(fileread("RawData/smFISH/20211112/wnt8ROIFilename.txt")));
 wntROIFilename = wntROIFilename(1:end-1);
 
+%% highlighyFPのパラメータ
+% param = [disc1, filter1, disc2. filter2, disc3, 上位の割合, 何pixel以上か]
+
+param = [10, 1, 7, 1, 5, 0.005, 4];
+
 %% szl
 szlNFP = cell(1,6);
 for sampleIndex = 1:6
@@ -42,7 +51,7 @@ for sampleIndex = 1:6
         tmrData = tifData(1:2:end,:,:);
         figSize = size(tifData, 3);
         ROIs = readROIs(ROIFilename(i), figSize);
-        szlNFP{sampleIndex} = [szlNFP{sampleIndex} plotNFP(tmrData, ROIs)];
+        szlNFP{sampleIndex} = [szlNFP{sampleIndex} plotNFP(tmrData, ROIs, param, "szl")];
     end
 end
 
@@ -56,7 +65,7 @@ for sampleIndex = 1:6
         tmrData = tifData(1:2:end,:,:);
         figSize = size(tifData, 3);
         ROIs = readROIs(ROIFilename(i), figSize);
-        chrdNFP{sampleIndex} = [chrdNFP{sampleIndex} plotNFP(tmrData, ROIs)];
+        chrdNFP{sampleIndex} = [chrdNFP{sampleIndex} plotNFP(tmrData, ROIs, param, "chrd")];
     end
 end
 
@@ -70,7 +79,7 @@ for sampleIndex = 1:6
         tmrData = tifData(1:2:end,:,:);
         figSize = size(tifData, 3);
         ROIs = readROIs(ROIFilename(i), figSize);
-        bmpNFP{sampleIndex} = [bmpNFP{sampleIndex} plotNFP(tmrData, ROIs)];
+        bmpNFP{sampleIndex} = [bmpNFP{sampleIndex} plotNFP(tmrData, ROIs, param, "bmp")];
     end
 end
 
@@ -84,7 +93,7 @@ for sampleIndex = 1:6
         tmrData = tifData(1:2:end,:,:);
         figSize = size(tifData, 3);
         ROIs = readROIs(ROIFilename(i), figSize);
-        wntNFP{sampleIndex} = [wntNFP{sampleIndex} plotNFP(tmrData, ROIs)];
+        wntNFP{sampleIndex} = [wntNFP{sampleIndex} plotNFP(tmrData, ROIs, param, "wnt")];
     end
 end
 
