@@ -17,3 +17,7 @@ Untitled.ipynb
 checkpoint_Chordin_2021-11-18.npy
 checkpoint_Nodal_2021-11-18.npy
 checkpoint_Szl_2021-11-18.npy
+*.npy
+./.ipynb_checkpoints
+.DS_Store
+Untitled-checkpoint.ipynb

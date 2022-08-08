@@ -8,7 +8,7 @@ import seaborn as sns
 
 def concat_csv():
     i = 0 
-    for CSV in sorted(glob.glob('../CSV/result*.csv')):
+    for CSV in sorted(glob.glob('../CSV/20220608/result*.csv')):
         print("concatenating on {}".format(CSV))
         if i == 0:
             tmp = pd.read_csv(CSV, index_col=0)
@@ -23,15 +23,19 @@ def concat_csv():
     return gene_result
 
 def extract_gene_csv(gene_result):
-    chd_assym = gene_result[gene_result.gene == 'Chordin']['assym']
-    ndl_assym = gene_result[gene_result.gene == 'Nodal']['assym']
-    szl_assym = gene_result[gene_result.gene == 'Szl']['assym']
+    #bmp2_assym = gene_result[gene_result.gene == 'bmp2']['assym']
+    #bmp4_assym = gene_result[gene_result.gene == 'bmp4']['assym']
+    #bmp7_assym = gene_result[gene_result.gene == 'bmp7']['assym']
+    ndl_assym = gene_result[gene_result.gene == 'ndr2']['assym']
+    szl_assym = gene_result[gene_result.gene == 'szl']['assym']
     
-    return chd_assym, ndl_assym, szl_assym
+    return bmp2_assym, bmp4_assym, bmp7_assym, ndl_assym, szl_assym
 
-def plot_violin(chd_assym, ndl_assym, szl_assym):
+def plot_violin(bmp2_assym, bmp4_assym, bmp7_assym, ndl_assym, szl_assym):
     df = pd.DataFrame({
-        'chd': chd_assym,
+        'bmp2': bmp2_assym,
+        'bmp4': bmp4_assym,
+        'bmp7': bmp7_assym,
         'ndr': ndl_assym,
         'szl': szl_assym
     })
@@ -46,15 +50,15 @@ def plot_violin(chd_assym, ndl_assym, szl_assym):
 
     ax.set_xlabel('Gene', fontsize = 20)
     ax.set_ylabel('Rate of Assymetry ' ,fontsize = 20)
-    ax.set_xticklabels(['chd', 'ndr', 'szl'],fontsize=16)
+    ax.set_xticklabels(['bmp2', 'bmp4','bmp7', 'ndr', 'szl'],fontsize=16)
     plt.savefig('../Figs/violinplot_each_gene.png')
     
     
 if __name__ == '__main__' :
     import datetime
     gene_result = concat_csv()
-    chd_assym, ndl_assym, szl_assym = extract_gene_csv(gene_result)
-    plot_violin( chd_assym, ndl_assym, szl_assym )
+    bmp2_assym, bmp4_assym, bmp7_assym, ndl_assym, szl_assym = extract_gene_csv(gene_result)
+    plot_violin(bmp2_assym, bmp4_assym, bmp7_assym, ndl_assym, szl_assym )
     
     gene_result.to_csv('../each_gene_lower_bound_result_{}.csv'.format(datetime.datetime.now().date()))
     

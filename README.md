@@ -32,3 +32,15 @@ visualize violin plot
 ```
 $ python ./scripts/visualize_violin.py
 ```
+
+すべての[gene]で上のスクリプトを出力させるコードは、
+```
+$ python ./scripts/output_python_codes.py
+```
+で、すべての[gene]に関する条件を書き込んだ python script が extract_script.shに書き込まれる。
+
+あとは、そのshell scriptを実行するだけで、結果が出る。
+```
+$ cd ./scripts/
+$ sh ./extract_script.sh
+```
