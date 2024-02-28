@@ -13,8 +13,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#### https://iatom.hatenablog.com/entry/2020/11/01/151945
-#### を大いに参考にさせていただきました。
 
 
 def scale_box(img, width, height):
@@ -42,41 +40,9 @@ def scale_box(img, width, height):
 
     return dst
 
-    """画像を重ねて合成する。
-
-    Args:
-        src (_type_): _description_
-        overlay (_type_): _description_
-        location (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
-    _, _ = overlay.shape[:2]
-
-    # 背景をPIL形式に変換
-    src = cv2.cvtColor(src, cv2.COLOR_BGR2RGB)
-    pil_src = Image.fromarray(src)
-    pil_src = pil_src.convert('RGBA')
-
-    # オーバーレイをPIL形式に変換
-    overlay = cv2.cvtColor(overlay, cv2.COLOR_BGRA2RGBA)
-    pil_overlay = Image.fromarray(overlay)
-    pil_overlay = pil_overlay.convert('RGBA')
-
-    # 画像を合成
-    pil_tmp = Image.new('RGBA', pil_src.size, (255, 255, 255, 0))
-    pil_tmp.paste(pil_overlay, location, pil_overlay)
-    result_image = Image.alpha_composite(pil_src, pil_tmp)
-
-    # OpenCV形式に変換
-    return cv2.cvtColor(np.asarray(result_image), cv2.COLOR_RGBA2BGRA)
-
-# Define a function to make the transparent rectangle
-
 class embryo_gui():
 
-    # 変数
+    # Variables
     filepath = None
     threshold = None
     input_canvas = None
@@ -87,17 +53,17 @@ class embryo_gui():
     y_start,y_end = 0,0
 
 
-    ##############
-    #   初期設定  #
-    ##############
+    ######################
+    #   Initial Setting  #
+    ######################
     def __init__(self, main):
-        ## 初期値設定##
+        ## Initial Parameters ##
         self.kernel_size = 8
         self.area_min = 4000
         self.area_max = 100000
-        # ファイル削除処理
+        # File Deleteing operation
         self.file_del()
-        # Clearボタン配置
+        # Undo button setting 
         clear1 = Button(root, text=u'Undo', command=self.clear_clicked)
         clear1.grid(row=0, column=1)
         clear1.place(x=570, y=12)
