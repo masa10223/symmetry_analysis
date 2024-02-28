@@ -21,7 +21,9 @@ python Extract_Embryo_GUI.py
 ```
 You can then scroll or type in the threshold values from the image in the GUI screen to automatically extract the expression area.
 
-![github_movie](https://github.com/masa10223/symmetry_analysis/blob/WISH-tsutsumi/github_movie.gif)
+![github_movie](https://github.com/masa10223/symmetry_analysis/assets/38234714/71ac86bd-8ad2-4f6d-8809-8c6367eb55ca)
+
+
 
 ## Description of buttons
 ### Draw Area
